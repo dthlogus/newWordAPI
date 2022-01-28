@@ -12,6 +12,7 @@ public class Words {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String word;
+    private boolean used;
 
     public long getId() {
         return id;
@@ -27,6 +28,14 @@ public class Words {
 
     public void setWord(String word) {
         this.word = word;
+    }
+
+    public boolean isUsed() {
+        return used;
+    }
+
+    public void setUsed(boolean used) {
+        this.used = used;
     }
 
     @Override
