@@ -10,11 +10,11 @@ public class Words {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private String word;
-    private boolean used;
+    private Boolean used;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -30,7 +30,7 @@ public class Words {
         this.word = word;
     }
 
-    public boolean isUsed() {
+    public Boolean isUsed() {
         return used;
     }
 
