@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class WordsService {
@@ -22,14 +23,6 @@ public class WordsService {
         }
     }
 
-    public List<Words> insertAll(List<Words> words) throws SQLException {
-        try {
-            return wordsRepository.saveAll(words);
-        }catch (Exception erro){
-            throw new SQLException("Erro ao inserir os dados");
-        }
-    }
-
     public List<Words> getWords() throws SQLException {
         try {
             return wordsRepository.findAll();
@@ -38,15 +31,8 @@ public class WordsService {
         }
     }
 
-    public Words getWord(Long id) throws SQLException {
-        try {
-            return wordsRepository.findById(id).get();
-        }catch (Exception erro){
-            throw new SQLException("Erro ao pegar os dados do ID: "+id);
-        }
-    }
-
-    public void updateWord(Words word) throws SQLException {
+    public void updateWord(Long id) throws SQLException {
+        Words word = wordsRepository.findById(id).get();
         try {
             wordsRepository.save(word);
         }catch (Exception erro){
@@ -54,9 +40,11 @@ public class WordsService {
         }
     }
 
-    public void deleteWord(Long id) throws SQLException {
+    public void usedWord(Long id) throws SQLException {
+        Words word = wordsRepository.findById(id).get();
         try {
-            wordsRepository.deleteById(id);
+            word.setUsed(true);
+            wordsRepository.save(word);
         }catch (Exception erro){
             throw new SQLException("Erro ao excluir a palavra do ID: "+id);
         }
