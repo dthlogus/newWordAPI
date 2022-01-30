@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface WordsRepository extends JpaRepository<Words, Long>{
 
-    @Query(value = "SELECT word FROM words WHERE used = false ORDER BY RAMDOM() LIMIT 10", nativeQuery = true)
-    List<String> findTenWords();
+    @Query(value = "SELECT * FROM words WHERE used = false ORDER BY RAMDOM() LIMIT 10", nativeQuery = true)
+    List<Words> findTenWords();
 }
